@@ -19,11 +19,9 @@ ARG INSTALL_ZSH="true"
 ARG COMMON_SCRIPT_SOURCE="https://raw.githubusercontent.com/microsoft/vscode-dev-containers/master/script-library/common-redhat.sh"
 ARG COMMON_SCRIPT_SHA="dev-mode"
 
-# Dotnet bits to install
+# Dotnet
 # https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-install-script
 ARG DOTNET_INSTALL_SCRIPT_SOURCE="https://dotnetwebsite.azurewebsites.net/download/dotnet-core/scripts/v1/dotnet-install.sh"
-
-
 
 
 # Configure apt and install packages
@@ -48,3 +46,8 @@ RUN wget -q -O /tmp/dotnet-install.sh $DOTNET_INSTALL_SCRIPT_SOURCE \
 
 RUN sudo ln -s ~/.dotnet/dotnet /usr/local/bin
 
+# Powershell
+# https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-linux?WT.mc_id=thomasmaurer-blog-thmaure&view=powershell-7
+
+RUN wget -q -O /etc/yum.repos.d/microsoft.repo https://packages.microsoft.com/config/rhel/7/prod.repo \
+    && yum -y install powershell
